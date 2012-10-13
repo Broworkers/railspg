@@ -1,0 +1,12 @@
+%h1 Login
+
+- if flash.alert
+  .warning= flash.alert
+
+= form_tag session_path do |form|
+  %fieldset
+    %div
+      = label_tag :email, "Email:"
+      = text_field_tag :email
+
+  = submit_tag "Login"
