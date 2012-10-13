@@ -8,30 +8,30 @@ Do you like Rails? Do you like RPG? Now you can have both!
 
 1. Get the code:
 
-```bash
-git clone git@github.com:railsrumble/r12-team-508.git pgrails
-```
+  ```bash
+  git clone git@github.com:railsrumble/r12-team-508.git pgrails
+  ```
 
 2. Install libraries
 
-```bash
-cd pgrails
-bundle
-```
+  ```bash
+  cd pgrails
+  bundle
+  ```
 
 == Starting application
 
 1. Start mongo:
 
-```bash
-mkdir -p tmp/mongo
-mongod --dbpath tmp/mongo
-```
+  ```bash
+  mkdir -p tmp/mongo
+  mongod --dbpath tmp/mongo
+  ```
 
 2. Start rails application server
 
-```bash
-rails s
-```
+  ```bash
+  rails s
+  ```
 
 3. Play it!
