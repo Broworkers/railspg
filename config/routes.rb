@@ -1,4 +1,10 @@
 Railspg::Application.routes.draw do
+  scope '/mocks' do
+    match '/:action',
+      controller: 'mocks',
+      actions: /[^\/]+/
+  end
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
