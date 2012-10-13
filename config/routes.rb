@@ -3,6 +3,8 @@ Railspg::Application.routes.draw do
   match 'logout' => 'sessions#destroy', as: :logout
   match 'login' => 'sessions#new', as: :login
 
+  resource :chat
+
   scope '/mocks' do
     match '/:action',
       controller: 'mocks',
