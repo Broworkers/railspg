@@ -4,4 +4,6 @@
 #
 $ ->
   $('div.chat').each ->
-    alert 'Hello World!'
+    console.log 'DEBUG: div.chat has been called'
+    # Use AJAX to get last messages
+    # Append last messages to the right container
