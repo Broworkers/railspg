@@ -116,6 +116,7 @@ GEM
       thor (>= 0.14.6, < 2.0)
     raindrops (0.10.0)
     rake (0.9.2.2)
+    rdiscount (1.6.8)
     rdoc (3.12)
       json (~> 1.4)
     rspec (2.11.0)
@@ -157,6 +158,8 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
+    warden (1.2.1)
+      rack (>= 1.0)
 
 PLATFORMS
   ruby
@@ -172,9 +175,11 @@ DEPENDENCIES
   newrelic_rpm
   pry
   rails (= 3.2.8)
+  rdiscount
   rspec-rails
   sass-rails (~> 3.2.3)
   therubyracer
   uglifier (>= 1.0.3)
   underscore-rails
   unicorn
+  warden

@@ -1,4 +1,11 @@
 Railspg::Application.routes.draw do
+  resource :session, only: :create
+  match 'logout' => 'sessions#destroy', as: :logout
+  match 'login' => 'sessions#new', as: :login
+
+  resource :chat
+  resources :messages
+
   scope '/mocks' do
     match '/:action',
       controller: 'mocks',
