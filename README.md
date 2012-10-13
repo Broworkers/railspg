@@ -35,3 +35,7 @@ Do you like Rails? Do you like RPG? Now you can have both!
   ```
 
 3. Play it!
+
+  ```bash
+  open localhost:3000
+  ```
