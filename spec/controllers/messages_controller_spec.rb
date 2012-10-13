@@ -4,7 +4,7 @@ describe MessagesController do
   describe "GET index" do
     before(:all) do
       3.times do |i|
-        FactoryGirl.create(:messages, created_at: (3 - i).minutes.ago)
+        FactoryGirl.create(:message, created_at: (3 - i).minutes.ago)
       end
     end
 

@@ -13,7 +13,10 @@ namespace :messages do
 
     begin
       loop do
-        Message.create(scope: 'scope', char: 'Jonhy Fucker', name: 'jonhy@fucker.com', body: 'Bodi', classes: %w[ message ])
+        Message.create(scope: 'scope', char: 'Jonhy Fucker',
+                       name: 'jonhy@fucker.com', body: 'Bodi',
+                       classes: %w[ message ], created_at: Time.now)
+
         print '.'
         sleep INTERVAL
       end

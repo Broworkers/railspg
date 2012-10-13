@@ -5,6 +5,7 @@ class Message
   field :name, type: String
   field :body, type: String
   field :classes, type: Array
+  field :created_at, type: Time
 
   # scopes: dm, ooc, dice, npc
 

@@ -1,6 +1,7 @@
 .chat
   - @messages.each do |message|
-    %div{ class: message.classes }
+    %div.line{ class: message.classes }
+      %time= message.created_at
       %span.sender
         - if message.scope
           %span.scope= message.scope
