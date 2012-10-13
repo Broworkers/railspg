@@ -19,6 +19,17 @@ Do you like Rails? Do you like RPG? Now you can have both!
   bundle
   ```
 
+3. You can create extra users using console
+
+```bash
+  rails c
+```
+
+```ruby
+  User.create(email: 'funny@example.com')
+```
+
+
 ## Starting application
 
 1. Start mongo:
