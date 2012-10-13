@@ -2,18 +2,18 @@ namespace :messages do
   desc 'Flood messages'
   task run: :environment do
     class QuitException < Exception; end
-
     INTERVAL = Integer(ENV['INTERVAL'] || 5)
 
     trap 'INT' do
       raise QuitException
     end
 
-    puts "Creating messages with #{INTERVAL} seconds interval"
+    user = User.where(email: 'foobar@example.com').first
 
     begin
+      puts "Creating messages with #{INTERVAL} seconds interval"
       loop do
-        Message.create(scope: 'scope', char: 'Jonhy Fucker',
+        Message.create(user: user, scope: 'scope', char: 'Jonhy Fucker',
                        name: 'jonhy@fucker.com', body: 'Bodi',
                        classes: %w[ message ], created_at: Time.now)
 

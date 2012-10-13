@@ -6,9 +6,11 @@ class Message
   field :body, type: String
   field :classes, type: Array
   field :created_at, type: Time
-  field :sent, type: Boolean
+  field :sent, type: Time
 
   # scopes: dm, ooc, dice, npc
 
   belongs_to :user
+
+  default_scope order_by(created_at: 1)
 end
