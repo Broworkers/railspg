@@ -6,6 +6,7 @@ class Message
   field :body, type: String
   field :classes, type: Array
   field :created_at, type: Time
+  field :sent, type: Boolean
 
   # scopes: dm, ooc, dice, npc
 

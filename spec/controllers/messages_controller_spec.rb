@@ -10,7 +10,7 @@ describe MessagesController do
 
     it "assigns all messages to @messages" do
 
-      get :index
+      get :index, format: :script
       assigns(:messages).should have(3).items
     end
 
