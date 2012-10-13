@@ -4,6 +4,7 @@ Railspg::Application.routes.draw do
   match 'login' => 'sessions#new', as: :login
 
   resource :chat
+  resources :messages
 
   scope '/mocks' do
     match '/:action',
