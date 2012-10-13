@@ -1,8 +1,8 @@
-== RailsPG
+# RailsPG
 
 Do you like Rails? Do you like RPG? Now you can have both!
 
-== Installing it
+## Installing it
 
 0. Get ruby-1.9.3-p194
 
@@ -19,7 +19,7 @@ Do you like Rails? Do you like RPG? Now you can have both!
   bundle
   ```
 
-== Starting application
+## Starting application
 
 1. Start mongo:
 
