@@ -9,13 +9,13 @@ Do you like Rails? Do you like RPG? Now you can have both!
 1. Get the code:
 
   ```bash
-  git clone git@github.com:railsrumble/r12-team-508.git pgrails
+  git clone git@github.com:railsrumble/r12-team-508.git railspg
   ```
 
 2. Install libraries
 
   ```bash
-  cd pgrails
+  cd railspg
   bundle
   ```
 
