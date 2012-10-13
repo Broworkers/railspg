@@ -3,5 +3,5 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 #
 $ ->
-  $ 'div.chat', ->
+  $('div.chat').each ->
     alert 'Hello World!'
