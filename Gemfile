@@ -14,6 +14,7 @@ end
 gem 'jquery-rails'
 gem 'underscore-rails'
 gem 'haml-rails'
+gem 'rdiscount'
 
 gem 'warden'
 # gem 'bcrypt-ruby', '~> 3.0.0'
