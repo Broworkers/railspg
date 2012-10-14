@@ -16,7 +16,7 @@ class User
     create! do |user|
       user.provider = auth['provider']
       user.uid = auth['uid']
-      user.login = auth['user_info'] ? auth['user_info']['name'] : 'no login'
+      user.login = auth['info']['nickname']
     end
   end
 end
