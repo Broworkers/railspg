@@ -44,14 +44,14 @@ class Message
       self['body'] = $2
     when %r[/roll (\d+)d *(\d+)?]i
       dices = Dice.roll($1, $2)
-
       self['classes'] = 'dice'
       self['scope'] = 'Dice'
       self['body'] = "#{user.name} (#{user.email}) rolls some dices: #{dices.join(' + ')} = **#{dices.inject {|s,d| s + d }}**"
     else
       self['name'] = user.name
-      self['body'] = plain
-      self['classes'] = [ 'say' ]
+      self['classes'] = [ $1 ]
+      self['scope'] = 'OOC'
+      self['body'] = $2
     end
   end
 
