@@ -31,13 +31,16 @@ nav
   width: 150px
 
   a
-    background-color: #eee
+    background-color: #666
     display: block
+    color: rgba(#000, .8)
     font-size: .9em
+    font-weight: bold
     padding: 15px
     text-decoration: none
     @include border-radius(5px)
-    @include box-shadow(inset 0 2px 0 #fff, 0 1px 2px rgba(#000, .5))
+    @include box-shadow(inset 0 1px 0 rgba(#fff, .2), inset 0 -23px 0 rgba(#000, .1), 0 1px 2px rgba(#000, .5))
+    @include text-shadow(0 1px 0 rgba(#eee, .2))
 
     & + a
       margin-top: 15px
@@ -47,3 +50,71 @@ aside
   @extend nav
   left: auto
   right: 0
+
+  .players
+
+    li
+      color: #eee
+      font-size: .8em
+      line-height: 1.3em
+      list-style: none
+      position: relative
+      @include text-shadow(0 2px 1px rgba(#000, .8))
+
+      & + li
+        margin-top: 15px
+
+      img
+        float: left
+        margin-right: 10px
+        @include border-radius(16px)
+        @include box-shadow(0 2px 1px rgba(#000, .8))
+
+      &.dm
+        color: lighten(#a3c, 30%)
+
+      &.host:after
+        bottom: -10px
+        color: #ee3
+        content: "HOST"
+        font-size: .7em
+        left: 4px
+        position: absolute
+        @include text-shadow(0 -1px 0 #000)
+
+      .name,
+      .char
+        overflow: hidden
+        text-overflow: ellipsis
+        white-space: nowrap
+        width: 108px
+
+      .char
+        font-size: .9em
+        @include opacity(.5)
+
+    button.invite
+      background-color: #666
+      border: none
+      color: rgba(#eee, .8)
+      display: block
+      font-size: .9em
+      font-weight: bold
+      margin-top: 15px
+      padding: 5px
+      text-decoration: none
+      width: 100%
+      @include border-radius(5px)
+      @include box-shadow(inset 0 1px 0 rgba(#fff, .2), inset 0 -13px 0 rgba(#000, .1), 0 1px 2px rgba(#000, .5))
+      @include text-shadow(0 1px 0 rgba(#000, .2))
+
+  .auto-scroll
+    background-color: rgba(#000, .3)
+    bottom: 12px
+    color: #eee
+    font-size: .8em
+    padding: 10px
+    position: absolute
+    left: 0
+    @include border-bottom-right-radius(5px)
+    @include border-top-right-radius(5px)

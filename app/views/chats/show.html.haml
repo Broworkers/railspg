@@ -6,19 +6,25 @@
       = render message
   %form
     %fieldset
-      %input( type="text" tabindex="1" placeholder="Type your message and press Enter/Return to send." )
+      %input.message( type="text" tabindex="1" placeholder="Type your message and press Enter/Return to send." )
 
 %aside
   .players
     %ul
       %li.dm.host
+        = image_tag "user.png", alt: ""
         .name rmasoni
         .char Dungeon Master
       %li
+        = image_tag "user.png", alt: ""
         .name dlibanori
         .char Sir Lancelot
       %li
+        = image_tag "user.png", alt: ""
         .name vitorfs
         .char Merlin the Mage
-    %button Invite Players
-  %input#auto-scroll( type="checkbox" ) Auto-scroll
+    %button.invite Invite Players
+
+  %label.auto-scroll
+    %input( type="checkbox" checked )
+    Auto-scroll
