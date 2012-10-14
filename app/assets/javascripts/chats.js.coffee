@@ -21,6 +21,33 @@ $ ->
     $.fn.scroll = ->
       if $('.auto-scroll input').is(':checked')
        $(this)[0].scrollTop = 9999999
+
     $.fn.loadMessages()
-    # Use AJAX to get last messages
-    # Append last messages to the right container
+
+    messageStack = new Array()
+    messageCursor = 0
+
+    commands = ['/say', '/ooc']
+    commandCursor = 0
+
+    $('form').submit ->
+      messageStack.push $('input').val()
+      $('input').val ''
+      messageCursor = messageStack.length
+      commandCursor = 0
+      false
+
+    $('form fieldset input').keydown (event) ->
+      if event.keyCode is 9 # Tab
+        $('input').val commands[commandCursor++ % 2] + ' '
+        return false
+
+      if messageStack.length > 0
+        if event.keyCode is 38 # /\
+          messageCursor = (messageCursor - 1) % messageStack.length
+          $('input').val messageStack[messageCursor]
+        else if event.keyCode is 40 # \/
+          messageCursor = (messageCursor + 1) % messageStack.length
+          $('input').val messageStack[messageCursor]
+
+      true
