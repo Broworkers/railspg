@@ -4,7 +4,6 @@
 
     - @messages.each do |message|
       = render message
-
   %form
     %fieldset
       %input( type="text" tabindex="1" placeholder="Type your message and press Enter/Return to send." )
@@ -22,3 +21,4 @@
         .name vitorfs
         .char Merlin the Mage
     %button Invite Players
+  %input#auto-scroll( type="checkbox" ) Auto-scroll
