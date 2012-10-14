@@ -11,8 +11,8 @@ def create_random_message
     'I do like GURPS'
   ].sample
 
-  Message.create(user: user, scope: scope, name: name, body: body,
-                 classes: classes, created_at: Time.now)
+  user.messages.create scope: scope, name: name, body: body,
+                      classes: classes, created_at: Time.now
 end
 
 namespace :messages do
