@@ -2,6 +2,9 @@
 
   .content
 
+    .line.system.first
+      Welcome to RailsPG!
+
     - @messages.each do |message|
       = render message
 
@@ -9,7 +12,7 @@
     %fieldset
       = form.hidden_field :sent, value: true
       = form.hidden_field :original, value: true
-      = form.text_field :plain, tabindex: 1, placeholder: 'Type your message and press Enter/Return to send.'
+      = form.text_field :plain, tabindex: 1, autofocus: 'autofocus', placeholder: 'Type your message and press Enter/Return to send.'
 
 %aside
   .players
