@@ -7,6 +7,8 @@ Railspg::Application.routes.draw do
   resources :messages
   resources :users
 
+  root to: 'sessions#new'
+
   scope '/mocks' do
     match '/:action',
       controller: 'mocks',
