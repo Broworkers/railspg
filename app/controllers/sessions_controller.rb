@@ -3,7 +3,11 @@ class SessionsController < ApplicationController
 
   def create
     auth = request.env['omniauth.auth']
-    user = User.find_by(provider: auth['provider'], uid: auth['uid']) || User.create_with_omniauth(auth)
+    user = begin
+             User.find_by(provider: auth['provider'], uid: auth['uid'])
+           rescue
+             User.create_with_omniauth(auth)
+           end
 
     session[:user_id] = user.id
     redirect_to :chat

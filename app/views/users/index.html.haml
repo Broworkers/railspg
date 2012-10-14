@@ -3,5 +3,5 @@
     = image_tag "user.png", alt: ""
     .name= user.login
     .char= user.nick
-    %button.sheet
+    %button.sheet{ 'data-id' => user.id }
       Character Sheet
