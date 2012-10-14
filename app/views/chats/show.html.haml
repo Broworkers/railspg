@@ -5,9 +5,6 @@
     .line.system.first
       Welcome to RailsPG!
 
-    - @messages.each do |message|
-      = render message
-
   = form_for Message.new do |form|
     %fieldset
       = form.hidden_field :sent, value: true
@@ -17,11 +14,6 @@
 %aside
   .players
     %ul
-      - User.all.each do |user|
-        %li{ class: classes_for(user) }
-          = image_tag "user.png", alt: ""
-          .name= user.email
-          .char= user.name
 
     %button.invite Invite Players
 

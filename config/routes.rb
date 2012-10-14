@@ -5,6 +5,7 @@ Railspg::Application.routes.draw do
 
   resource :chat
   resources :messages
+  resources :users
 
   scope '/mocks' do
     match '/:action',
