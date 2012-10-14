@@ -53,7 +53,7 @@ class Message
     else
       self['login'] = user.login
       self['nick'] = user.nick
-      self['classes'] = [ 'OOC' ]
+      self['classes'] = [ 'ooc' ]
       self['scope'] = 'OOC'
       self['body'] = plain
     end
