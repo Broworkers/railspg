@@ -18,3 +18,26 @@
   %label.auto-scroll
     %input( type="checkbox" checked )
     Auto-scroll
+
+  .sheet
+    %button.close
+    %h2 Sir Lancelot
+    %h3 Character Sheet
+    %form
+      %fieldset
+        = find_and_preserve do
+          %textarea
+            Name:
+            Race:
+            Profession:
+            Health Points:
+            —
+            Strength:
+            Intelligence:
+            Dexterity:
+            Vitality:
+            —
+            Professions:
+            —
+            Back Story:
+        %input( type="Submit" value="Save" )
