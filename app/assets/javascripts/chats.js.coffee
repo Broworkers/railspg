@@ -40,9 +40,9 @@ $ ->
         command = value.split(' ')[0]
         if $.inArray(command, commandList) isnt -1
           $(this).val(command + ' ')
-          if commandHistory[0] isnt value
+          if commandHistory[0] isnt command 
             commandHistory[1] = commandHistory[0]
-            commandHistory[0] = command + ' '
+            commandHistory[0] = command
         else
           $(this).val ''
       else
@@ -60,22 +60,29 @@ $ ->
           $('input:text').commandTrigger()
         error: ->
           $('input:text').val ''
-      false
+      console.log commandHistory
+      return false
 
     $('input:text').keydown (event) ->
       if event.keyCode is 9 # Tab
         commandCursor = (commandCursor + 1) % 2
-        $(this).val commandHistory[commandCursor]
+        value = $(this).val()
+        if value.match('^\/')
+          message = value.split(' ', 2)[1]
+          $(this).val commandHistory[commandCursor] + ' ' + message
+          event.preventDefault()
         return false
       if messageStack.length > 0
         if event.keyCode is 38 # /\
           if messageCursor > 0
             messageCursor--
             $(this).val messageStack[messageCursor]
+            event.preventDefault()
         else if event.keyCode is 40 # \/
           if messageCursor < messageStack.length
             messageCursor++
             $(this).val messageStack[messageCursor]
+            event.preventDefault()
           else
             $(this).val ''
       return true
@@ -83,5 +90,6 @@ $ ->
     $('input:text').keyup (event) ->
       if event.keyCode is 27
         $(this).val ''
+        event.preventDefault()
         return false
       return true
