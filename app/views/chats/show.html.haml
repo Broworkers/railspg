@@ -4,6 +4,7 @@
 
     - @messages.each do |message|
       = render message
+
   = form_for Message.new do |form|
     %fieldset
       = form.hidden_field :original, value: true
