@@ -67,20 +67,27 @@ $ ->
           $('input:text').val ''
       $('input:text').commandTrigger()
       return false
+    
+    $.fn.tabTrigger = ->
+      commandCursor = (commandCursor + 1) % 2
+      value = $(this).val().split(' ', 2)
+      if value[0].match '^\/'
+        if value[1] isnt undefined
+          message = value[1]
+        else
+          message = ''
+      else
+        message = $(this).val()
+
+      if commandHistory[commandCursor] isnt ''
+        $(this).val commandHistory[commandCursor] + ' ' + message
+      else
+        $(this).val message
 
     $('input:text').keydown (event) ->
       if event.keyCode is 9 # Tab
-        commandCursor = (commandCursor + 1) % 2
-        value = $(this).val()
-        if value.match '^\/'
-          message = value.split(' ', 2)[1]
-          if message isnt undefined
-            if commandHistory[commandCursor] isnt ''
-              $(this).val commandHistory[commandCursor] + ' ' + message
-            else
-              $(this).val message
+        $(this).tabTrigger()
         event.preventDefault()
-        return false
       if messageStack.length > 0
         if event.keyCode is 38 # /\
           if messageCursor > 0
