@@ -63,4 +63,9 @@ class Message
       another.messages.create attributes, :as => :copy
     end
   end
+
+  def sent!
+    return if sent?
+    update_attributes sent: true
+  end
 end

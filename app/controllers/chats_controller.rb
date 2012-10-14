@@ -4,7 +4,7 @@ class ChatsController < ApplicationController
 
     current_user.messages.each do |message|
       @messages << message
-      message.touch :sent
+      message.sent!
     end
   end
 end

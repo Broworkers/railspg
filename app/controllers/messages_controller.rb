@@ -6,7 +6,7 @@ class MessagesController < ApplicationController
 
     current_user.messages.where(sent: nil).each do |message|
       @messages << message
-      message.update_attributes sent: true
+      message.sent!
     end
   end
 
