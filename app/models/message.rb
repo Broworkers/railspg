@@ -26,6 +26,13 @@ class Message
     plain.strip!
 
     case plain
+    when %r[/(nick) (.*)]i
+      self['login'] = user.login
+      self['nick'] = user.nick
+      self['classes'] = [ 'system' ]
+      self['body'] = "#{user.nick} (#{user.login}) now is #{$2}"
+
+      user.update_attributes nick: $2
     when %r[/(say|me) (.*)]i
       self['login'] = user.login
       self['nick'] = user.nick
@@ -35,7 +42,7 @@ class Message
       self['login'] = user.login
       self['nick'] = user.nick
       self['classes'] = [ $1 ]
-      self['scope'] = 'OOC'
+      self['scope'] = 'ooc'
       self['body'] = $2
     when %r[/(npc) ([^:]*): *(.*)$]i
       self['classes'] = [ $1 ]
