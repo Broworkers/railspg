@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 #
 $ ->
-  $('div.chat').each ->
+  $('div.chat div.content').each ->
     loadingTimeout = 3000
 
     $.fn.loadMessages = ->
