@@ -5,4 +5,6 @@
       %span.scope= message.scope
     - if message.name
       %span.name= message.name
-  %span.body= message.body
+  %span.body
+    :markdown
+      #{message.body}

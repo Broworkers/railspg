@@ -6,12 +6,12 @@ class MessagesController < ApplicationController
 
     current_user.messages.where(sent: nil).each do |message|
       @messages << message
-      message.touch :sent
+      message.update_attributes sent: true
     end
   end
 
   def create
-    current_user.messages.create(params[:message])
-    head status: 200
+    @message = current_user.messages.create(params[:message])
+    render partial: @message
   end
 end

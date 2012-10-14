@@ -5,7 +5,7 @@ class Message
   field :body, type: String
   field :classes, type: Array
   field :created_at, type: Time, default: -> { Time.now }
-  field :sent, type: Time
+  field :sent, type: Boolean
   field :source, type: Time
 
   attr_accessor :plain, :original

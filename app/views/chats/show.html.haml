@@ -7,6 +7,7 @@
 
   = form_for Message.new do |form|
     %fieldset
+      = form.hidden_field :sent, value: true
       = form.hidden_field :original, value: true
       = form.text_field :plain, tabindex: 1, placeholder: 'Type your message and press Enter/Return to send.'
 
