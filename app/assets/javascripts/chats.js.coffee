@@ -67,9 +67,12 @@ $ ->
       if event.keyCode is 9 # Tab
         commandCursor = (commandCursor + 1) % 2
         value = $(this).val()
-        if value.match('^\/')
+        if value.match '^\/'
           message = value.split(' ', 2)[1]
-          $(this).val commandHistory[commandCursor] + ' ' + message
+          if commandHistory[commandCursor] isnt ''
+            $(this).val commandHistory[commandCursor] + ' ' + message
+          else
+            $(this).val message
           event.preventDefault()
         return false
       if messageStack.length > 0
