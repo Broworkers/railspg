@@ -1,0 +1,49 @@
+body,
+input,
+select,
+button
+  font-family: Istok Web, sans-serif
+
+html
+  height: 100%
+
+body
+  background-color: #433
+  color: rgba(#000, .8)
+  height: 100%
+
+strong
+  font-weight: bold
+
+em
+  font-style: italic
+
+code
+  font-family: monospace
+
+
+nav
+  bottom: 0
+  left: 0
+  padding: 15px
+  position: absolute
+  top: 0
+  width: 150px
+
+  a
+    background-color: #eee
+    display: block
+    font-size: .9em
+    padding: 15px
+    text-decoration: none
+    @include border-radius(5px)
+    @include box-shadow(inset 0 2px 0 #fff, 0 1px 2px rgba(#000, .5))
+
+    & + a
+      margin-top: 15px
+
+
+aside
+  @extend nav
+  left: auto
+  right: 0

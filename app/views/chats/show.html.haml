@@ -1,7 +1,24 @@
 .chat
-  - @messages.each do |message|
-    = render message
 
-%form
-  %fieldset
-    %input( type="text" )
+  .content
+
+    - @messages.each do |message|
+      = render message
+
+  %form
+    %fieldset
+      %input( type="text" tabindex="1" placeholder="Type your message and press Enter/Return to send." )
+
+%aside
+  .players
+    %ul
+      %li.dm.host
+        .name rmasoni
+        .char Dungeon Master
+      %li
+        .name dlibanori
+        .char Sir Lancelot
+      %li
+        .name vitorfs
+        .char Merlin the Mage
+    %button Invite Players
