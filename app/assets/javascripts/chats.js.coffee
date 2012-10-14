@@ -3,6 +3,9 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 #
 $ ->
+  $('a[href="/sheets"]').click ->
+    alert "teste"
+    return false
   $('div.chat div.content').each ->
     loadingTimeout = 500
 
@@ -56,11 +59,10 @@ $ ->
         type: 'post'
         success: (data) ->
           $('div.chat div.content').append data
-          $('div.content').scroll()
-          $('input:text').commandTrigger()
         error: ->
           $('input:text').val ''
-      console.log commandHistory
+      $('div.content').scroll()
+      $('input:text').commandTrigger()
       return false
 
     $('input:text').keydown (event) ->
@@ -73,7 +75,7 @@ $ ->
             $(this).val commandHistory[commandCursor] + ' ' + message
           else
             $(this).val message
-          event.preventDefault()
+        event.preventDefault()
         return false
       if messageStack.length > 0
         if event.keyCode is 38 # /\
