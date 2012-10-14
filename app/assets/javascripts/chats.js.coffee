@@ -25,22 +25,31 @@ $ ->
     $.fn.loadMessages()
 
     messageStack = new Array()
-    cursor = 0
+    messageCursor = 0
+
+    commands = ['/say', '/ooc']
+    commandCursor = 0
 
     $('form').submit ->
       messageStack.push $('input').val()
       $('input').val ''
-      cursor = messageStack.length
+      messageCursor = messageStack.length
+      commandCursor = 0
       false
 
     $('form fieldset input').keypress (event) ->
+      if event.keyCode == 9 # Tab
+        $('input').val commands[commandCursor++ % 2] + ' '
+        return false
+
       if messageStack.length > 0
         if event.keyCode == 38 # /\
-          cursor = (cursor - 1) % messageStack.length
-          $('input').val messageStack[cursor]
-        if event.keyCode == 40 # \/
-          cursor = (cursor + 1) % messageStack.length
-          $('input').val messageStack[cursor]
+          messageCursor = (messageCursor - 1) % messageStack.length
+          $('input').val messageStack[messageCursor]
+        else if event.keyCode == 40 # \/
+          messageCursor = (messageCursor + 1) % messageStack.length
+          $('input').val messageStack[messageCursor]
+
       true
 
     # Use AJAX to get last messages
