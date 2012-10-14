@@ -5,6 +5,10 @@ select,
 button
   font-family: Istok Web, sans-serif
 
+input[type="submit"],
+button
+  cursor: pointer
+
 // Fluid height requirement
 html
   height: 100%
@@ -39,6 +43,24 @@ nav
   #logo
     margin: .5em 1em 0 0
     vertical-align: middle
+
+  // Invite URL
+  .invite
+    color: rgba(#000, .8)
+    display: inline-block
+    font-size: .9em
+    font-weight: bold
+    overflow: hidden
+    padding: 3px 10px
+    vertical-align: -.3em
+    @include background(linear-gradient(left, rgba(#000, .2) 0%, rgba(#000, .2) 85px, rgba(#000, .1) 85px, rgba(#000, .1) 100%))
+    @include border-radius(5px)
+    @include text-shadow(0 1px 0 rgba(#fff, .5))
+
+    span
+      font-family: Menlo, Lucida Console, monospace
+      font-weight: normal
+      margin-left: .5em
 
   // Fancy fade-out effect
   &:after
@@ -81,7 +103,7 @@ aside
   .players
 
     ul
-      max-height: 21.5em
+      max-height: 34em
       overflow-y: auto
 
     li
@@ -90,11 +112,36 @@ aside
       line-height: 1.2em
       list-style: none
       overflow: hidden
+      padding: 5px
       position: relative
+      @include border-radius(5px)
       @include text-shadow(0 2px 1px rgba(#000, .8))
 
       & + li
-        margin-top: 15px
+        margin-top: 5px
+
+      button.sheet
+        background-color: #ccc
+        border: none
+        color: rgba(#000, .8)
+        display: none
+        font-size: .8em
+        font-weight: bold
+        margin: 0
+        padding: 3px 10px
+        position: absolute
+        right: 10px
+        text-decoration: none
+        top: 10px
+        @include border-radius(5px)
+        @include box-shadow(inset 0 1px 0 rgba(#fff, .2), inset 0 -13px 0 rgba(#000, .1), 0 1px 2px rgba(#000, .5))
+        @include text-shadow(0 1px 0 rgba(#fff, .2))
+
+      &:hover
+        background-color: rgba(#000, .3)
+
+        button.sheet
+          display: block
 
       img
         float: left
@@ -105,6 +152,9 @@ aside
       &.dm
         color: lighten(#a3c, 30%)
 
+        img
+          @include box-shadow(0 0 0 2px lighten(#a3c, 30%))
+
       &.host:after
         bottom: -10px
         color: #de3
@@ -114,32 +164,21 @@ aside
         position: absolute
         @include text-shadow(0 -1px 0 #000)
 
+      &.me
+
+        img
+          @include box-shadow(0 0 0 2px #fff)
+
       .name,
       .char
         overflow: hidden
         text-overflow: ellipsis
         white-space: nowrap
-        width: 108px
+        width: 240px
 
       .char
         font-size: .9em
         @include opacity(.6)
-
-    // Invite button
-    button.invite
-      background-color: #ccc
-      border: none
-      color: rgba(#000, .8)
-      display: block
-      font-size: .9em
-      font-weight: bold
-      margin-top: 30px
-      padding: 5px
-      text-decoration: none
-      width: 100%
-      @include border-radius(5px)
-      @include box-shadow(inset 0 1px 0 rgba(#fff, .2), inset 0 -13px 0 rgba(#000, .1), 0 1px 2px rgba(#000, .5))
-      @include text-shadow(0 1px 0 rgba(#fff, .2))
 
   // Auto-scroll checkbox
   .auto-scroll
