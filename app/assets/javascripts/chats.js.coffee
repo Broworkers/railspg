@@ -3,12 +3,6 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 #
 $ ->
-  $('a[href="/sheets"]').click ->
-    $('div.players').fadeOut 'slow', ->
-      $('div.players').html 'teste'
-      $('div.players').fadeIn()
-    return false
-
   $('div.chat div.content').each ->
     loadingTimeout = 500
 
@@ -136,7 +130,13 @@ $ ->
         cache: false
         success: (data) ->
           $('div.players ul').html data
+          $('div.players ul li').loadSheetControl();
         complete:
           window.setTimeout $.fn.loadPlayers, 5000
 
     $.fn.loadPlayers()
+
+
+    $.fn.loadSheetControl = ->
+      $(this).click ->
+        $('div.players').slideUp('fast')
