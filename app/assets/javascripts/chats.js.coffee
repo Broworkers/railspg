@@ -19,7 +19,7 @@ $ ->
             window.setTimeout $.fn.loadMessages, (loadingTimeout += 3000)
 
     $.fn.scroll = ->
-      if $('#auto-scroll').is(':checked')
+      if $('.auto-scroll input').is(':checked')
        $(this)[0].scrollTop = 9999999
 
     $.fn.loadMessages()
