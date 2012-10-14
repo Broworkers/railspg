@@ -1,7 +1,6 @@
 class Message
   include Mongoid::Document
   field :scope, type: String
-  field :char, type: String
   field :name, type: String
   field :body, type: String
   field :classes, type: Array
@@ -9,6 +8,7 @@ class Message
   field :sent, type: Time
 
   # scopes: dm, ooc, dice, npc
+  # classes: system, dice, tell, npc, dm, me, whisper, say, ooc
 
   belongs_to :user
 
