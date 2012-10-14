@@ -4,15 +4,16 @@
 #
 $ ->
   $('div.chat div.content').each ->
-    loadingTimeout = 3000
+    loadingTimeout = 500
 
     $.fn.loadMessages = ->
         $.ajax
           cache: false
           url: '/messages'
           success: (data) ->
-            $('div.chat div.content').append data
-            $('div.content').scroll()
+            if data.length > 0
+              $('div.chat div.content').append data
+              $('div.content').scroll()
             window.setTimeout $.fn.loadMessages, loadingTimeout
             loadingTimeout = 3000
           error: ->
@@ -27,8 +28,22 @@ $ ->
     messageStack = new Array()
     messageCursor = 0
 
-    commands = ['/say', '/ooc']
+    commandHistory = ['/say ', '/ooc ']
     commandCursor = 0
+
+    $.fn.commandTrigger = ->
+      messageStack.push $(this).val()
+      messageCursor = messageStack.length
+      value = $(this).val()
+      if value.match('^\/')
+        value = value.split(' ')[0] + ' '
+        $(this).val(value)
+        if commandHistory[0] is ''
+          commandHistory[0] = value
+        else if commandHistory[0] isnt value
+          commandHistory[0] = value
+      else
+        $(this).val ''
 
     $('form').submit ->
       $.ajax
@@ -37,23 +52,32 @@ $ ->
         url: '/messages'
         type: 'post'
         success: ->
-          messageStack.push $('input:text').val()
+          $('input:text').commandTrigger()
+        error: ->
           $('input:text').val ''
-          messageCursor = messageStack.length
-          commandCursor = 0
       false
 
     $('input:text').keydown (event) ->
       if event.keyCode is 9 # Tab
-        $('input:text').val commands[commandCursor++ % 2] + ' '
+       # commandHistory[1] = $(this).val().split(' ')[0]
+        $(this).val commandHistory[++commandCursor%2]
+        return false
+
+    $('input:text').keyup (event) ->
+      if event.keyCode is 27
+        $(this).val ''
         return false
 
       if messageStack.length > 0
         if event.keyCode is 38 # /\
-          messageCursor = (messageCursor - 1) % messageStack.length
-          $('input:text').val messageStack[messageCursor]
+          if messageCursor > 0
+            messageCursor--
+            $(this).val messageStack[messageCursor]
         else if event.keyCode is 40 # \/
-          messageCursor = (messageCursor + 1) % messageStack.length
-          $('input:text').val messageStack[messageCursor]
+          if messageCursor < messageStack.length
+            messageCursor++
+            $(this).val messageStack[messageCursor]
+          else
+            $(this).val ''
 
-      true
+      return true
