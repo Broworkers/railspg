@@ -118,3 +118,14 @@ $ ->
         event.preventDefault()
         return false
       return true
+
+    $.fn.loadPlayers = ->
+      $.ajax
+        url: '/users'
+        cache: false
+        success: (data) ->
+          $('div.players ul').html data
+        complete:
+          window.setTimeout $.fn.loadPlayers, 5000
+
+    $.fn.loadPlayers()
