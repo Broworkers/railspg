@@ -1,5 +1,5 @@
 %div.line{ class: message.classes }
-  %time= message.created_at
+  %time= l message.created_at, :format => :short
   %span.sender
     - if message.scope
       %span.scope= message.scope
