@@ -28,7 +28,8 @@ $ ->
     messageStack = new Array()
     messageCursor = 0
 
-    commandHistory = ['/say ', '/ooc ']
+    commandList = ['/say', '/ooc', '/tell', '/w']
+    commandHistory = ['', '']
     commandCursor = 0
 
     $.fn.commandTrigger = ->
@@ -36,12 +37,14 @@ $ ->
       messageCursor = messageStack.length
       value = $(this).val()
       if value.match('^\/')
-        value = value.split(' ')[0] + ' '
-        $(this).val(value)
-        if commandHistory[0] is ''
-          commandHistory[0] = value
-        else if commandHistory[0] isnt value
-          commandHistory[0] = value
+        command = value.split(' ')[0]
+        if $.inArray(command, commandList) isnt -1
+          $(this).val(command + ' ')
+          if commandHistory[0] isnt value
+            commandHistory[1] = commandHistory[0]
+            commandHistory[0] = command + ' '
+        else
+          $(this).val ''
       else
         $(this).val ''
 
@@ -51,7 +54,9 @@ $ ->
         data: $(this).serialize()
         url: '/messages'
         type: 'post'
-        success: ->
+        success: (data) ->
+          $('div.chat div.content').append data
+          $('div.content').scroll()
           $('input:text').commandTrigger()
         error: ->
           $('input:text').val ''
@@ -59,15 +64,9 @@ $ ->
 
     $('input:text').keydown (event) ->
       if event.keyCode is 9 # Tab
-       # commandHistory[1] = $(this).val().split(' ')[0]
-        $(this).val commandHistory[++commandCursor%2]
+        commandCursor = (commandCursor + 1) % 2
+        $(this).val commandHistory[commandCursor]
         return false
-
-    $('input:text').keyup (event) ->
-      if event.keyCode is 27
-        $(this).val ''
-        return false
-
       if messageStack.length > 0
         if event.keyCode is 38 # /\
           if messageCursor > 0
@@ -79,5 +78,10 @@ $ ->
             $(this).val messageStack[messageCursor]
           else
             $(this).val ''
+      return true
 
+    $('input:text').keyup (event) ->
+      if event.keyCode is 27
+        $(this).val ''
+        return false
       return true
