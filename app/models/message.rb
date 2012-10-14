@@ -30,7 +30,7 @@ class Message
       self['classes'] = [ $1 ]
       self['body'] = $2
     when %r[/(ooc) (.*)]i
-      self['name'] = user.name
+      self['name'] = user.email
       self['classes'] = [ $1 ]
       self['scope'] = 'OOC'
       self['body'] = $2
