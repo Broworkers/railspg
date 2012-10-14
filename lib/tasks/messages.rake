@@ -1,5 +1,5 @@
 def create_random_message
-  user = User.all.sample
+  user = User.where(email: 'foobar@example.com').first
   scope = %w[ dm ooc dice npc ].sample
   name = %w[ Conan Batman Robin Curinga ].sample
   classes = %w[ system dice tell npc dm me whisper say ooc ].sample

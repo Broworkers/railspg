@@ -2,7 +2,7 @@ class ChatsController < ApplicationController
   def show
     @messages = []
 
-    Message.each do |message|
+    current_user.messages.each do |message|
       @messages << message
       message.touch :sent
     end
