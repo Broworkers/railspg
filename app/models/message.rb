@@ -47,7 +47,7 @@ class Message
 
       self['classes'] = 'dice'
       self['scope'] = 'Dice'
-      self['body'] = "#{user.name} (#{user.email}) rolls some dices: #{dices.join(' + ')} = **#{dices.inject {|s,d| s + d }}**"
+      self['body'] = "#{user.name} (#{user.email}) rolls #{$1}d#{$2}: #{dices.join(' + ')} = **#{dices.inject {|s,d| s + d }}**"
     else
       self['name'] = user.name
       self['body'] = plain
