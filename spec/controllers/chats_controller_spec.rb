@@ -1,8 +1,11 @@
 require 'spec_helper'
 
 describe ChatsController do
+  before(:all) { Message.destroy_all }
   describe "GET show" do
-    let!(:message) { create(:message) }
+    let(:user) { create(:user) }
+    let!(:message) { create(:message, user: user) }
+
     after { Message.destroy_all }
 
     it "assigns all messages to @messages" do
