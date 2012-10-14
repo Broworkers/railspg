@@ -17,10 +17,11 @@ $ ->
             if data.length > 0
               $('div.chat div.content').append data
               $('div.content').scroll()
-            window.setTimeout $.fn.loadMessages, loadingTimeout
-            loadingTimeout = 3000
+            loadingTimeout = 500
           error: ->
-            window.setTimeout $.fn.loadMessages, (loadingTimeout += 3000)
+            loadingTimeout += 1000
+          complete: ->
+            window.setTimeout $.fn.loadMessages, loadingTimeout
 
     $.fn.scroll = ->
       if $('.auto-scroll input').is(':checked')
@@ -43,7 +44,7 @@ $ ->
         command = value.split(' ')[0]
         if $.inArray(command, commandList) isnt -1
           $(this).val(command + ' ')
-          if commandHistory[0] isnt command 
+          if commandHistory[0] isnt command
             commandHistory[1] = commandHistory[0]
             commandHistory[0] = command
         else
@@ -58,10 +59,12 @@ $ ->
         url: '/messages'
         type: 'post'
         success: (data) ->
-          $('div.chat div.content').append data
+          message = $(data)
+          $('div.chat div.content').append message
+          message.effect("highlight")
+          $('div.content').scroll()
         error: ->
           $('input:text').val ''
-      $('div.content').scroll()
       $('input:text').commandTrigger()
       return false
 

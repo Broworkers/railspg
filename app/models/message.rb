@@ -25,33 +25,33 @@ class Message
     plain.strip!
 
     case plain
-    when %r[/(say|me) (.*)]
+    when %r[/(say|me) (.*)]i
       self['name'] = user.name
       self['classes'] = [ $1 ]
       self['body'] = $2
-    when %r[/(ooc) (.*)]
-      self['name'] = user.email
+    when %r[/(ooc) (.*)]i
+      self['name'] = user.name
       self['classes'] = [ $1 ]
       self['scope'] = 'OOC'
       self['body'] = $2
-    when %r[/(npc) ([^:]*): *(.*)$]
+    when %r[/(npc) ([^:]*): *(.*)$]i
       self['classes'] = [ $1 ]
       self['scope'] = 'NPC'
       self['name'] = $2
       self['body'] = $3
-    when %r[/(tell) (.*)]
+    when %r[/(tell) (.*)]i
       self['classes'] = [ $1 ]
       self['body'] = $2
-    when %r[/roll (\d+)d *(\d+)?]
+    when %r[/roll (\d+)d *(\d+)?]i
       dices = Dice.roll($1, $2)
-
       self['classes'] = 'dice'
       self['scope'] = 'Dice'
       self['body'] = "#{user.name} (#{user.email}) rolls some dices: #{dices.join(' + ')} = **#{dices.inject {|s,d| s + d }}**"
     else
       self['name'] = user.name
-      self['body'] = plain
-      self['classes'] = [ 'say' ]
+      self['classes'] = [ $1 ]
+      self['scope'] = 'OOC'
+      self['body'] = $2
     end
   end
 
