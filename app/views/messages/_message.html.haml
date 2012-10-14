@@ -3,8 +3,8 @@
   %span.sender
     - if message.scope
       %span.scope= message.scope
-    - if message.name
-      %span.name= message.name
+    - if message.nick
+      %span.nick= message.nick
   %span.body
     :markdown
       #{message.body}

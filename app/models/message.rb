@@ -1,7 +1,8 @@
 class Message
   include Mongoid::Document
   field :scope, type: String
-  field :name, type: String
+  field :login, type: String
+  field :nick, type: String
   field :body, type: String
   field :classes, type: Array
   field :created_at, type: Time, default: -> { Time.now }
@@ -26,18 +27,20 @@ class Message
 
     case plain
     when %r[/(say|me) (.*)]i
-      self['name'] = user.name
+      self['login'] = user.login
+      self['nick'] = user.nick
       self['classes'] = [ $1 ]
       self['body'] = $2
     when %r[/(ooc) (.*)]i
-      self['name'] = user.name
+      self['login'] = user.login
+      self['nick'] = user.nick
       self['classes'] = [ $1 ]
       self['scope'] = 'OOC'
       self['body'] = $2
     when %r[/(npc) ([^:]*): *(.*)$]i
       self['classes'] = [ $1 ]
       self['scope'] = 'NPC'
-      self['name'] = $2
+      self['nick'] = $2
       self['body'] = $3
     when %r[/(tell) (.*)]i
       self['classes'] = [ $1 ]
@@ -46,9 +49,10 @@ class Message
       dices = Dice.roll($1, $2)
       self['classes'] = 'dice'
       self['scope'] = 'Dice'
-      self['body'] = "#{user.name} (#{user.email}) rolls #{$1}d#{$2}: #{dices.join(' + ')} = **#{dices.inject {|s,d| s + d }}**"
+      self['body'] = "#{user.nick} (#{user.login}) rolls #{$1}d#{$2}: #{dices.join(' + ')} = **#{dices.inject {|s,d| s + d }}**"
     else
-      self['name'] = user.name
+      self['login'] = user.login
+      self['nick'] = user.nick
       self['classes'] = [ 'OOC' ]
       self['scope'] = 'OOC'
       self['body'] = plain
