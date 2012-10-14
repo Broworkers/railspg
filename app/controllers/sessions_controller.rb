@@ -1,20 +1,16 @@
 class SessionsController < ApplicationController
-
   layout 'public'
 
   def create
-    @user = warden.authenticate
+    auth = request.env['omniauth.auth']
+    user = User.find_by(provider: auth['provider'], uid: auth['uid']) || User.create_with_omniauth(auth)
 
-    if @user
-      redirect_to :chat
-    else
-      flash.now.alert = warden.message if warden.message.present?
-      render :new
-    end
+    session[:user_id] = user.id
+    redirect_to :chat
   end
 
   def destroy
-    logout
+    session[:user_id] = nil
     redirect_to :login
   end
 end
