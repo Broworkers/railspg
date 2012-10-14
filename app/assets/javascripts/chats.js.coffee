@@ -42,6 +42,3 @@ $ ->
           cursor = (cursor + 1) % messageStack.length
           $('input').val messageStack[cursor]
       true
-
-    # Use AJAX to get last messages
-    # Append last messages to the right container

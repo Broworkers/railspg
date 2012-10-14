@@ -3,8 +3,7 @@ class SessionsController < ApplicationController
     @user = warden.authenticate
 
     if @user
-      # redirect_to someplace_path
-      render text: 'Now you are logged'
+      redirect_to :chat
     else
       flash.now.alert = warden.message if warden.message.present?
       render :new

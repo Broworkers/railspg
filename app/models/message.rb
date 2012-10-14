@@ -18,7 +18,7 @@ class Message
   def create_others_users_copy
     return true if copy?
 
-    User.where(:user_id.ne => user.id).each do |another|
+    User.where(:id.ne => user.id).each do |another|
       another.messages.create attributes_for_copy
     end
   end
