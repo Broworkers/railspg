@@ -17,6 +17,7 @@ gem 'haml-rails'
 gem 'rdiscount'
 
 gem 'warden'
+gem 'omniauth'
 # gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'jbuilder'
 gem 'rspec-rails'
