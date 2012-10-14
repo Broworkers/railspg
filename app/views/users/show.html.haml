@@ -1,2 +1,9 @@
-:markdown
-  #{@user.sheet}
+.sheet
+  %button.close
+  %h2 Sir Lancelot
+  %h3 Character Sheet
+  %form
+    %fieldset
+      = find_and_preserve do
+        %textarea= @user.sheet
+      %input( type="Submit" value="Save" )
