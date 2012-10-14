@@ -49,9 +49,9 @@ class Message
       self['body'] = "#{user.name} (#{user.email}) rolls some dices: #{dices.join(' + ')} = **#{dices.inject {|s,d| s + d }}**"
     else
       self['name'] = user.name
-      self['classes'] = [ $1 ]
+      self['classes'] = [ 'OOC' ]
       self['scope'] = 'OOC'
-      self['body'] = $2
+      self['body'] = plain
     end
   end
 
