@@ -1,79 +1,107 @@
 .chat
-  .line.message
-    %span.sender
-      -# TODO: If any scope is set…
-      %span.scope [DM]
-      %span.name rmasoni
-    .body
-      :markdown
-        You're in the woods. Some noises are coming from the nearby bushes.
 
-  .line.message
-    %span.sender
-      %span.char Sir Lancelot
-      %span.name dlibanori
-    .body
-      :markdown
-        Beware everyone!
+  .content
 
-  .line.me
-    %span.sender
-      %span.char Sir Lancelot
-    .body
-      :markdown
-        draws his sword and shield.
+    .line.system
+      .body
+        :markdown
+          Welcome to **rmasoni**'s RPG session.
 
-  .line.message
-    %span.sender
-      %span.char Merlin the Mage
-      %span.name vitorfs
-    .body
-      :markdown
-        It must be the goblins!
+    .line.system
+      .body
+        :markdown
+          **pedobear** left the chat.
 
-  .line.message
-    %span.sender
-      -# TODO: If any scope is set…
-      %span.scope [OOC]
-      %span.name vitorfs
-    .body
-      :markdown
-        I'll cast goblin detection.
+    .line.system
+      .body
+        :markdown
+          **paulorss** left the chat.
 
-  .line.message
-    %span.sender
-      -# TODO: If any scope is set…
-      %span.scope [DM]
-      %span.name rmasoni
-    .body
-      :markdown
-        Roll 2d6.
+    .line.tell
+      .body
+        :markdown
+          You're in the woods. Some noises are coming from the nearby bushes.
 
-  .line.dice
-    %span.sender
-      %span.scope [Dice]
-      %span.name vitorfs
-    .body
-      -# TODO: Dinamically prints the dice roll and sums the results if more than one dice.
-      :markdown
-        rolls 2d6. 5 + 2 = **7**
+    .line.say
+      %span.sender
+        %span.name Sir Lancelot
+      .body
+        :markdown
+          Beware everyone!
 
-  .line.message
-    %span.sender
-      %span.scope [DM]
-      %span.name rmasoni
-    .body
-      :markdown
-        `Merlin the Mage (vitorfs)` strongly feels the presence of goblins around. An arrow is shot from the brushes towards `Sir Lancelot (dlibanori)`!
+    .line.me
+      %span.sender
+        %span.name Sir Lancelot
+      .body
+        :markdown
+          draws his sword and shield.
 
-  .line.message
-    %span.sender
-      %span.scope [NPC]
-      %span.name Goblin
-    .body
-      :markdown
-        DIIIE!!
+    .line.say
+      %span.sender
+        %span.name Merlin the Mage
+      .body
+        :markdown
+          It must be the goblins!
 
-%form
-  %fieldset
-    %input( type="text" )
+    .line.ooc
+      %span.sender
+        -# TODO: If any scope is set…
+        %span.scope [OOC]
+        %span.name vitorfs
+      .body
+        :markdown
+          I'll cast goblin detection.
+
+    .line.dm
+      %span.sender
+        -# TODO: If any scope is set…
+        %span.scope [DM]
+        %span.name rmasoni
+      .body
+        :markdown
+          Roll 2d6.
+
+    .line.dice
+      %span.sender
+        %span.scope [Dice]
+        %span.name vitorfs
+      .body
+        -# TODO: Dinamically prints the dice roll and sums the results if more than one dice.
+        :markdown
+          rolls 2d6. 5 + 2 = **7**
+
+    .line.tell
+      .body
+        :markdown
+          **Merlin the Mage** strongly feels the presence of goblins around. An arrow is shot from the bushes towards **Sir Lancelot**!
+
+    .line.npc
+      %span.sender
+        %span.scope [NPC]
+        %span.name Goblin
+      .body
+        :markdown
+          DIIIE!!
+
+    .line.system
+      .body
+        :markdown
+          **[DM] rmasoni** muted **dlibanori**.
+
+  %form
+    %fieldset
+      %input( type="text" tabindex="1" placeholder="Type your message and press Enter/Return to send." )
+
+%aside
+  .players
+    %ul
+      %li.dm.host
+        .name rmasoni
+        .char Dungeon Master
+      %li
+        .name dlibanori
+        .char Sir Lancelot
+      %li
+        .name vitorfs
+        .char Merlin the Mage
+    %button Invite Players
