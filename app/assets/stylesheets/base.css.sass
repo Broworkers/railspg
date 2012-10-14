@@ -37,7 +37,7 @@ nav
   z-index: 2
 
   #logo
-    margin-right: 1em
+    margin: .5em 1em 0 0
     vertical-align: middle
 
   // Fancy fade-out effect
@@ -80,11 +80,16 @@ aside
   // Player list
   .players
 
+    ul
+      max-height: 21.5em
+      overflow-y: auto
+
     li
       color: #eee
       font-size: .9em
       line-height: 1.2em
       list-style: none
+      overflow: hidden
       position: relative
       @include text-shadow(0 2px 1px rgba(#000, .8))
 

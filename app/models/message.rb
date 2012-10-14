@@ -49,7 +49,7 @@ class Message
       self['body'] = "#{user.name} (#{user.email}) rolls #{$1}d#{$2}: #{dices.join(' + ')} = **#{dices.inject {|s,d| s + d }}**"
     else
       self['name'] = user.name
-      self['classes'] = [ 'OOC' ]
+      self['classes'] = [ 'ooc' ]
       self['scope'] = 'OOC'
       self['body'] = plain
     end
