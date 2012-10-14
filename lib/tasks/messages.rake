@@ -1,3 +1,20 @@
+def create_random_message
+  user = User.all.sample
+  scope = %w[ dm ooc dice npc ].sample
+  name = %w[ Conan Batman Robin Curinga ].sample
+  classes = %w[ system dice tell npc dm me whisper say ooc ].sample
+  body = [
+    'I hate globlins',
+    'Now you are dead',
+    'I found some money',
+    'Do you want pizza?',
+    'I do like GURPS'
+  ].sample
+
+  Message.create(user: user, scope: scope, name: name, body: body,
+                 classes: classes, created_at: Time.now)
+end
+
 namespace :messages do
   desc 'Flood messages'
   task run: :environment do
@@ -8,15 +25,10 @@ namespace :messages do
       raise QuitException
     end
 
-    user = User.where(email: 'foobar@example.com').first
-
     begin
       puts "Creating messages with #{INTERVAL} seconds interval"
       loop do
-        Message.create(user: user, scope: 'scope', char: 'Jonhy Fucker',
-                       name: 'jonhy@fucker.com', body: 'Bodi',
-                       classes: %w[ message ], created_at: Time.now)
-
+        create_random_message
         print '.'
         sleep INTERVAL
       end
@@ -26,7 +38,7 @@ namespace :messages do
   end
 
   desc 'Remove all messages'
-  task clean: :environment do
+  task clear: :environment do
     Message.destroy_all
   end
 end

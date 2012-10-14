@@ -7,9 +7,6 @@ class Message
   field :created_at, type: Time
   field :sent, type: Time
 
-  # scopes: dm, ooc, dice, npc
-  # classes: system, dice, tell, npc, dm, me, whisper, say, ooc
-
   belongs_to :user
 
   default_scope order_by(created_at: 1)
