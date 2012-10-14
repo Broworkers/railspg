@@ -31,23 +31,29 @@ $ ->
     commandCursor = 0
 
     $('form').submit ->
-      messageStack.push $('input').val()
-      $('input').val ''
-      messageCursor = messageStack.length
-      commandCursor = 0
+      $.ajax
+        cache: false
+        data: $(this).serialize()
+        url: '/messages'
+        type: 'post'
+        success: ->
+          messageStack.push $('input:text').val()
+          $('input:text').val ''
+          messageCursor = messageStack.length
+          commandCursor = 0
       false
 
-    $('form fieldset input').keydown (event) ->
+    $('input:text').keydown (event) ->
       if event.keyCode is 9 # Tab
-        $('input').val commands[commandCursor++ % 2] + ' '
+        $('input:text').val commands[commandCursor++ % 2] + ' '
         return false
 
       if messageStack.length > 0
         if event.keyCode is 38 # /\
           messageCursor = (messageCursor - 1) % messageStack.length
-          $('input').val messageStack[messageCursor]
+          $('input:text').val messageStack[messageCursor]
         else if event.keyCode is 40 # \/
           messageCursor = (messageCursor + 1) % messageStack.length
-          $('input').val messageStack[messageCursor]
+          $('input:text').val messageStack[messageCursor]
 
       true
