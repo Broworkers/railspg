@@ -15,13 +15,9 @@
   .players
     %ul
       - User.all.each do |user|
-        %li.dm.host
+        %li{ class: classes_for(user) }
           = image_tag "user.png", alt: ""
-          - if user == current_user
-            .name= user.email
-            %span (You)
-          - else
-            .name= user.email
+          .name= user.email
           .char= user.name
 
     %button.invite Invite Players
