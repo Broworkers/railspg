@@ -71,10 +71,11 @@ $ ->
         value = $(this).val()
         if value.match '^\/'
           message = value.split(' ', 2)[1]
-          if commandHistory[commandCursor] isnt ''
-            $(this).val commandHistory[commandCursor] + ' ' + message
-          else
-            $(this).val message
+          if message isnt undefined
+            if commandHistory[commandCursor] isnt ''
+              $(this).val commandHistory[commandCursor] + ' ' + message
+            else
+              $(this).val message
         event.preventDefault()
         return false
       if messageStack.length > 0
