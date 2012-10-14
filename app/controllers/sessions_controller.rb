@@ -1,4 +1,7 @@
 class SessionsController < ApplicationController
+
+  layout 'public'
+
   def create
     @user = warden.authenticate
 
