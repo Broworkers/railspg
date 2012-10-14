@@ -3,6 +3,9 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 #
 $ ->
+  $('a[href="/sheets"]').click ->
+    alert "teste"
+    return false
   $('div.chat div.content').each ->
     loadingTimeout = 500
 
@@ -14,10 +17,11 @@ $ ->
             if data.length > 0
               $('div.chat div.content').append data
               $('div.content').scroll()
-            window.setTimeout $.fn.loadMessages, loadingTimeout
-            loadingTimeout = 3000
+            loadingTimeout = 500
           error: ->
-            window.setTimeout $.fn.loadMessages, (loadingTimeout += 3000)
+            loadingTimeout += 1000
+          complete: ->
+            window.setTimeout $.fn.loadMessages, loadingTimeout
 
     $.fn.scroll = ->
       if $('.auto-scroll input').is(':checked')
@@ -40,7 +44,7 @@ $ ->
         command = value.split(' ')[0]
         if $.inArray(command, commandList) isnt -1
           $(this).val(command + ' ')
-          if commandHistory[0] isnt command 
+          if commandHistory[0] isnt command
             commandHistory[1] = commandHistory[0]
             commandHistory[0] = command
         else
@@ -55,12 +59,13 @@ $ ->
         url: '/messages'
         type: 'post'
         success: (data) ->
-          $('div.chat div.content').append data
+          message = $(data)
+          $('div.chat div.content').append message
+          message.effect("highlight")
           $('div.content').scroll()
-          $('input:text').commandTrigger()
         error: ->
           $('input:text').val ''
-      console.log commandHistory
+      $('input:text').commandTrigger()
       return false
 
     $('input:text').keydown (event) ->
@@ -73,7 +78,7 @@ $ ->
             $(this).val commandHistory[commandCursor] + ' ' + message
           else
             $(this).val message
-          event.preventDefault()
+        event.preventDefault()
         return false
       if messageStack.length > 0
         if event.keyCode is 38 # /\
