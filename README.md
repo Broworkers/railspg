@@ -1,45 +1,45 @@
 # RailsPG
 
-Do you like Rails? Do you like RPG? Now you can have both!
+Do you like Rails? Do you like tabletop RPG? Now you can have both!
 
 ## Installing it
 
-0. Get ruby-1.9.3-p194
+1. Get ruby-1.9.3-p194
 
-1. Get the code:
+2. Get the code
 
   ```bash
   git clone git@github.com:railsrumble/r12-team-508.git railspg
   ```
 
-2. Install libraries
+3. Install the libraries
 
   ```bash
   cd railspg
   bundle
   ```
 
-3. You can create extra users using console
+4. You can create extra users using the console
 
-```bash
-  rails c
-```
+  ```bash
+    rails c
+  ```
 
-```ruby
-  User.create(email: 'funny@example.com')
-```
+  ```ruby
+    User.create(email: 'funny@example.com')
+  ```
 
 
-## Starting application
+## Starting the application
 
-1. Start mongo:
+1. Start mongo
 
   ```bash
   mkdir -p tmp/mongo
   mongod --dbpath tmp/mongo
   ```
 
-2. Start rails application server
+2. Start Rails application server
 
   ```bash
   rails s

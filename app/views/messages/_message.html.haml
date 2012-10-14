@@ -1,0 +1,10 @@
+%div.line{ class: message.classes }
+  %time= message.created_at
+  %span.sender
+    - if message.scope
+      %span.scope= message.scope
+    - if message.char
+      %span.name= message.char
+    - if message.name
+      %span.name= message.name
+  %span.body= message.body
