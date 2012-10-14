@@ -3,14 +3,14 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 #
 $ ->
-  $('div.chat').each ->
+  $('div.chat .content').each ->
     $.fn.loadMessages = ->
         $.ajax
           cache: false
           url: '/messages'
           beforeSend: ->
           success: (data) ->
-            $('div.chat').append data
+            $('div.chat .content').append data
             window.setTimeout $.fn.loadMessages, 3000
           error: ->
             #alert 'erro'
