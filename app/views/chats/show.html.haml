@@ -4,6 +4,7 @@
 
     - @messages.each do |message|
       = render message
+
   = form_for Message.new do |form|
     %fieldset
       = form.text_field :body, tabindex: 1, placeholder: 'Type your message and press Enter/Return to send.'
