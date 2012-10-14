@@ -130,13 +130,31 @@ $ ->
         cache: false
         success: (data) ->
           $('div.players ul').html data
-          $('div.players ul li').loadSheetControl();
+          $('div.players ul li button').loadSheetControl()
         complete:
           window.setTimeout $.fn.loadPlayers, 5000
 
     $.fn.loadPlayers()
 
+    $.fn.closeSheetControl = ->
+      $(this).click ->
+        $('div.sheet').slideUp 'fast', ->
+          $('div.players').slideDown('fast')
+
+    $('div.sheet').hide()
 
     $.fn.loadSheetControl = ->
       $(this).click ->
-        $('div.players').slideUp('fast')
+        $('div.players').slideUp 'fast', ->
+          $('div.sheet').slideDown('fast')
+
+        $.ajax
+          url: '/users/' + $(this).attr('data-id')
+          cache: false
+          beforeSend: ->
+            $('div.sheet').html 'Loading...'
+          success: (data) ->
+            $('div.sheet').html data
+            $('div.sheet button.close').closeSheetControl()
+          error: ->
+            $('div.players').slideDown('fast')
