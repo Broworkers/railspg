@@ -10,7 +10,9 @@ class UsersController < ApplicationController
   end
 
   def update
-    current_user.update_attributes params[:user]
+    @user = User.find(params[:id])
+    @user.update_attributes(params[:user])
+
     head status: 200
   end
 end
