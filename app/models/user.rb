@@ -9,7 +9,6 @@ class User
   field :host, type: Boolean
 
   has_many :messages
-  has_one :sheet
 
   def self.create_with_omniauth(auth)
     logger.info auth.to_yaml
