@@ -4,8 +4,11 @@
 #
 $ ->
   $('a[href="/sheets"]').click ->
-    alert "teste"
+    $('div.players').fadeOut 'slow', ->
+      $('div.players').html 'teste'
+      $('div.players').fadeIn()
     return false
+
   $('div.chat div.content').each ->
     loadingTimeout = 500
 
@@ -28,6 +31,7 @@ $ ->
        $(this)[0].scrollTop = 9999999
 
     $.fn.loadMessages()
+    $('div.content').scroll()
 
     messageStack = new Array()
     messageCursor = 0
@@ -53,33 +57,46 @@ $ ->
         $(this).val ''
 
     $('form').submit ->
-      $.ajax
-        cache: false
-        data: $(this).serialize()
-        url: '/messages'
-        type: 'post'
-        success: (data) ->
-          message = $(data)
-          $('div.chat div.content').append message
-          message.effect("highlight")
-          $('div.content').scroll()
-        error: ->
-          $('input:text').val ''
-      $('input:text').commandTrigger()
+      if $.trim($('input:text').getPlainMessage()).length > 0
+        $.ajax
+          cache: false
+          data: $(this).serialize()
+          url: '/messages'
+          type: 'post'
+          success: (data) ->
+            message = $(data)
+            $('div.chat div.content').append message
+            message.effect("highlight")
+            $('div.content').scroll()
+          error: ->
+            $('input:text').val ''
+        $('input:text').commandTrigger()
       return false
+
+    $.fn.getPlainMessage = ->
+      message = ''
+      value = $(this).val().split(' ', 2)
+      if value[0].match '^\/'
+        if value[1] isnt undefined
+          message = value[1]
+        else
+          message = ''
+      else
+        message = $(this).val()
+      return message
+
+    $.fn.tabTrigger = ->
+      commandCursor = (commandCursor + 1) % 2
+      message = $(this).getPlainMessage()
+      if commandHistory[commandCursor] isnt ''
+        $(this).val commandHistory[commandCursor] + ' ' + message
+      else
+        $(this).val message
 
     $('input:text').keydown (event) ->
       if event.keyCode is 9 # Tab
-        commandCursor = (commandCursor + 1) % 2
-        value = $(this).val()
-        if value.match '^\/'
-          message = value.split(' ', 2)[1]
-          if commandHistory[commandCursor] isnt ''
-            $(this).val commandHistory[commandCursor] + ' ' + message
-          else
-            $(this).val message
+        $(this).tabTrigger()
         event.preventDefault()
-        return false
       if messageStack.length > 0
         if event.keyCode is 38 # /\
           if messageCursor > 0
