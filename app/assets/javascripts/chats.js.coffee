@@ -4,6 +4,16 @@
 #
 $ ->
   $('div.chat').each ->
-    console.log 'DEBUG: div.chat has been called'
+    $.fn.loadMessages = ->
+        $.ajax
+          cache: false
+          url: '/messages'
+          beforeSend: ->
+          success: (data) ->
+            $('div.chat').append data
+            window.setTimeout $.fn.loadMessages, 3000
+          error: ->
+            #alert 'erro'
+    $.fn.loadMessages()
     # Use AJAX to get last messages
     # Append last messages to the right container
