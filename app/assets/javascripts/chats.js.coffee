@@ -37,16 +37,16 @@ $ ->
       commandCursor = 0
       false
 
-    $('form fieldset input').keypress (event) ->
-      if event.keyCode == 9 # Tab
+    $('form fieldset input').keydown (event) ->
+      if event.keyCode is 9 # Tab
         $('input').val commands[commandCursor++ % 2] + ' '
         return false
 
       if messageStack.length > 0
-        if event.keyCode == 38 # /\
+        if event.keyCode is 38 # /\
           messageCursor = (messageCursor - 1) % messageStack.length
           $('input').val messageStack[messageCursor]
-        else if event.keyCode == 40 # \/
+        else if event.keyCode is 40 # \/
           messageCursor = (messageCursor + 1) % messageStack.length
           $('input').val messageStack[messageCursor]
 
