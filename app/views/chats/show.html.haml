@@ -14,18 +14,16 @@
 %aside
   .players
     %ul
-      %li.dm.host
-        = image_tag "user.png", alt: ""
-        .name rmasoni
-        .char Dungeon Master
-      %li
-        = image_tag "user.png", alt: ""
-        .name dlibanori
-        .char Sir Lancelot
-      %li
-        = image_tag "user.png", alt: ""
-        .name vitorfs
-        .char Merlin the Mage
+      - User.all.each do |user|
+        %li.dm.host
+          = image_tag "user.png", alt: ""
+          - if user == current_user
+            .name= user.email
+            %span (You)
+          - else
+            .name= user.email
+          .char= user.name
+
     %button.invite Invite Players
 
   %label.auto-scroll

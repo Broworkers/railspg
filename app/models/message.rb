@@ -15,7 +15,7 @@ class Message
   default_scope order_by(created_at: 1)
 
   attr_accessible *fields.keys + %w[ original plain ]
-  attr_accessible *fields.keys - %w[ _id ], :as => :copy
+  attr_accessible *fields.keys - %w[ _id sent ], :as => :copy
 
   before_save :digest_plain
   after_create :create_others_users_copy
