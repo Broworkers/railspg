@@ -4,16 +4,24 @@
 #
 $ ->
   $('div.chat').each ->
+    loadingTimeout = 3000
+
     $.fn.loadMessages = ->
         $.ajax
           cache: false
           url: '/messages'
-          beforeSend: ->
           success: (data) ->
-            $('div.chat').append data
-            window.setTimeout $.fn.loadMessages, 3000
+            $('div.chat div.content').append data
+            window.setTimeout $.fn.loadMessages, loadingTimeout
+            loadingTimeout = 3000
+            $('div.line').last().scroll()
           error: ->
-            #alert 'erro'
+            window.setTimeout $.fn.loadMessages, (loadingTimeout += 3000)
+
+    $.fn.scroll = ->
+      lastMessage = $(this)
+      $('html, body').animate({ scrollTop: lastMessage.offset().top }, 2000);
+
     $.fn.loadMessages()
     # Use AJAX to get last messages
     # Append last messages to the right container
