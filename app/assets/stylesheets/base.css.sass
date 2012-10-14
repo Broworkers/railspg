@@ -47,3 +47,50 @@ aside
   @extend nav
   left: auto
   right: 0
+
+  .players
+
+    li
+      color: #eee
+      font-size: .8em
+      line-height: 1.3em
+      list-style: none
+      position: relative
+      @include text-shadow(0 2px 1px rgba(#000, .8))
+
+      & + li
+        margin-top: 15px
+
+      img
+        float: left
+        margin-right: 10px
+        @include border-radius(16px)
+        @include box-shadow(0 2px 1px rgba(#000, .8))
+
+      &.dm
+        color: lighten(#a3c, 30%)
+
+      &.host:after
+        bottom: -10px
+        color: #ee3
+        content: "HOST"
+        font-size: .7em
+        left: 4px
+        position: absolute
+        @include text-shadow(0 -1px 0 #000)
+
+      .name,
+      .char
+        overflow: hidden
+        text-overflow: ellipsis
+        white-space: nowrap
+        width: 108px
+
+      .char
+        font-size: .9em
+        @include opacity(.5)
+
+    button.invite
+      display: block
+      margin-top: 15px
+      width: 100%
