@@ -3,12 +3,6 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 #
 $ ->
-  $('a[href="/sheets"]').click ->
-    $('div.players').fadeOut 'slow', ->
-      $('div.players').html 'teste'
-      $('div.players').fadeIn()
-    return false
-
   $('div.chat div.content').each ->
     loadingTimeout = 500
 
@@ -36,10 +30,17 @@ $ ->
     messageStack = new Array()
     messageCursor = 0
 
-    commandList = ['/say', '/ooc', '/tell', '/w']
+    commandList = ['/say', '/ooc', '/tell', '/w', '/npc']
     commandHistory = ['', '']
     commandCursor = 0
 
+    $.fn.getNpc = ->
+      value = $(this).val().split(' ', 3)
+      if value[1] isnt undefined
+        return value[1]
+      else
+        return ''
+  
     $.fn.commandTrigger = ->
       messageStack.push $(this).val()
       messageCursor = messageStack.length
@@ -47,7 +48,11 @@ $ ->
       if value.match('^\/')
         command = value.split(' ')[0]
         if $.inArray(command, commandList) isnt -1
-          $(this).val(command + ' ')
+          if command is '/npc'
+            npc = $(this).getNpc()
+            $(this).val(command + ' ' + npc + ' ') 
+          else
+            $(this).val(command + ' ')
           if commandHistory[0] isnt command
             commandHistory[1] = commandHistory[0]
             commandHistory[0] = command
@@ -125,7 +130,13 @@ $ ->
         cache: false
         success: (data) ->
           $('div.players ul').html data
+          $('div.players ul li').loadSheetControl();
         complete:
           window.setTimeout $.fn.loadPlayers, 5000
 
     $.fn.loadPlayers()
+
+
+    $.fn.loadSheetControl = ->
+      $(this).click ->
+        $('div.players').slideUp('fast')

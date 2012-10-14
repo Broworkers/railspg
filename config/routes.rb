@@ -1,5 +1,5 @@
 Railspg::Application.routes.draw do
-  resource :session, only: :create
+  match '/auth/:provider/callback', to: 'sessions#create'
   match 'logout' => 'sessions#destroy', as: :logout
   match 'login' => 'sessions#new', as: :login
 
@@ -8,12 +8,6 @@ Railspg::Application.routes.draw do
   resources :users
 
   root to: 'sessions#new'
-
-  scope '/mocks' do
-    match '/:action',
-      controller: 'mocks',
-      actions: /[^\/]+/
-  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
