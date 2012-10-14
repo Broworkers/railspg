@@ -7,7 +7,7 @@
 
   %form
     %fieldset
-      %input( type="text" tabindex="1" placeholder="Type your message and press Enter/Return to send." )
+      %input.message( type="text" tabindex="1" placeholder="Type your message and press Enter/Return to send." )
 
 %aside
   .players
@@ -25,3 +25,7 @@
         .name vitorfs
         .char Merlin the Mage
     %button.invite Invite Players
+
+  %label.auto-scroll
+    %input( type="checkbox" checked )
+    Auto-scroll
