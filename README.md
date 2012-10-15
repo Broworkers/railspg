@@ -2,6 +2,7 @@
 
 Do you like Rails? Do you like tabletop RPG? Now you can have both!
 
+
 ## Installing it
 
 1. Get ruby-1.9.3-p194
@@ -22,11 +23,11 @@ Do you like Rails? Do you like tabletop RPG? Now you can have both!
 4. You can create extra users using the console
 
   ```bash
-    rails c
+  rails c
   ```
 
   ```ruby
-    User.create(email: 'funny@example.com')
+  User.create(email: 'funny@example.com')
   ```
 
 
@@ -45,7 +46,7 @@ Do you like Rails? Do you like tabletop RPG? Now you can have both!
   rails s
   ```
 
-3. Play it!
+3. Gather some friends and have fun!
 
   ```bash
   open http://localhost:3000
