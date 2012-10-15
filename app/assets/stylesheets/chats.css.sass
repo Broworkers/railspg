@@ -38,7 +38,7 @@
         .scope:before
           content: "["
 
-        .name
+        .nick
 
           &:after
             content: ":"
@@ -74,7 +74,7 @@
       &.me
         color: rgba(#000, .3)
 
-        .name:after
+        .nick:after
           content: ""
 
       &.tell
@@ -92,13 +92,13 @@
           padding: .05em .5em
           @include border-radius(.5em)
 
-        .name:after
+        .nick:after
           content: ""
 
       &.system
         color: #36a
 
-        .name:after
+        .nick:after
           content: ""
 
   form

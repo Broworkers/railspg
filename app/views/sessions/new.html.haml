@@ -1,4 +1,4 @@
-.login
+.signin
   = image_tag 'logo.png', alt: 'RailsPG', width: '350px'
 
   %br
@@ -6,4 +6,4 @@
   - if flash.alert
     .warning= flash.alert
 
-  = link_to 'Sign in with Twitter', '/auth/twitter', class: "signin"
+  = link_to 'Sign in with Twitter', '/auth/twitter', class: "twitter-auth"

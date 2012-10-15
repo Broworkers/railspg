@@ -30,20 +30,18 @@ class Message
       self['login'] = user.login
       self['nick'] = user.nick
       self['classes'] = [ 'system' ]
-      self['body'] = "#{user.nick} (#{user.login}) now is #{$2}"
+      self['body'] = "(#{user.login}) now is #{$2}"
 
       user.update_attributes nick: $2
     when %r[/(say|me) (.*)]i
-      self['login'] = user.login
       self['nick'] = user.nick
       self['classes'] = [ $1 ]
       self['body'] = $2
     when %r[/(ooc) (.*)]i
       self['login'] = user.login
-      self['nick'] = user.nick
       self['classes'] = [ $1 ]
-      self['scope'] = 'ooc'
-      self['body'] = $2
+      self['scope'] = 'OOC'
+      self['body'] = "#{user.login}: #{$2}"
     when %r[/(npc) ([^:]*): *(.*)$]i
       self['classes'] = [ $1 ]
       self['scope'] = 'NPC'
@@ -56,13 +54,12 @@ class Message
       dices = Dice.roll($1, $2)
       self['classes'] = 'dice'
       self['scope'] = 'Dice'
-      self['body'] = "#{user.nick} (#{user.login}) rolls #{$1}d#{$2}: #{dices.join(' + ')} = **#{dices.inject {|s,d| s + d }}**"
+      self['body'] = "#{user.login} rolls #{$1}d#{$2}: #{dices.join(' + ')} = **#{dices.inject {|s,d| s + d }}**"
     else
       self['login'] = user.login
-      self['nick'] = user.nick
       self['classes'] = [ 'ooc' ]
       self['scope'] = 'OOC'
-      self['body'] = plain
+      self['body'] = "#{user.login}: #{plain}"
     end
   end
 

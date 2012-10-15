@@ -40,7 +40,7 @@ $ ->
         return value[1]
       else
         return ''
-  
+
     $.fn.commandTrigger = ->
       messageStack.push $(this).val()
       messageCursor = messageStack.length
@@ -50,7 +50,7 @@ $ ->
         if $.inArray(command, commandList) isnt -1
           if command is '/npc'
             npc = $(this).getNpc()
-            $(this).val(command + ' ' + npc + ' ') 
+            $(this).val(command + ' ' + npc + ' ')
           else
             $(this).val(command + ' ')
           if commandHistory[0] isnt command

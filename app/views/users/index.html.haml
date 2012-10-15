@@ -1,5 +1,5 @@
 - @users.each do |user|
   %li{ class: classes_for(user) }
     = image_tag "user.png", alt: ""
-    .name= user.login
-    .char= user.nick
+    .login= user.login
+    .nick= user.nick
