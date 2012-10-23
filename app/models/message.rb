@@ -40,11 +40,11 @@ class Message
     when %r[/(ooc) (.*)]i
       self['login'] = user.login
       self['classes'] = [ $1 ]
-      self['scope'] = 'OOC'
+      self['scope'] = '[OOC]'
       self['body'] = "#{user.login}: #{$2}"
     when %r[/(npc) ([^:]*): *(.*)$]i
       self['classes'] = [ $1 ]
-      self['scope'] = 'NPC'
+      self['scope'] = '[NPC]'
       self['nick'] = $2
       self['body'] = $3
     when %r[/(tell) (.*)]i
@@ -53,12 +53,12 @@ class Message
     when %r[/roll (\d+)d *(\d+)?]i
       dices = Dice.roll($1, $2)
       self['classes'] = 'dice'
-      self['scope'] = 'Dice'
+      self['scope'] = '[Dice]'
       self['body'] = "#{user.login} rolls #{$1}d#{$2}: #{dices.join(' + ')} = **#{dices.inject {|s,d| s + d }}**"
     else
       self['login'] = user.login
       self['classes'] = [ 'ooc' ]
-      self['scope'] = 'OOC'
+      self['scope'] = '[OOC]'
       self['body'] = "#{user.login}: #{plain}"
     end
   end
