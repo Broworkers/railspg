@@ -28,6 +28,7 @@ GEM
     activesupport (3.2.8)
       i18n (~> 0.6)
       multi_json (~> 1.0)
+    addressable (2.3.4)
     arel (3.0.2)
     builder (3.0.3)
     chunky_png (1.2.6)
@@ -47,6 +48,7 @@ GEM
       compass (>= 0.12.2, < 0.14)
     diff-lcs (1.1.3)
     erubis (2.7.0)
+    excon (0.20.1)
     execjs (1.4.0)
       multi_json (~> 1.0)
     factory_girl (4.1.0)
@@ -62,6 +64,14 @@ GEM
       haml (~> 3.1)
       railties (>= 3.1, < 4.1)
     hashie (1.2.0)
+    heroku (2.39.2)
+      heroku-api (~> 0.3.7)
+      launchy (>= 0.3.2)
+      netrc (~> 0.7.7)
+      rest-client (~> 1.6.1)
+      rubyzip
+    heroku-api (0.3.9)
+      excon (~> 0.20.1)
     hike (1.2.1)
     i18n (0.6.1)
     jbuilder (0.8.2)
@@ -72,6 +82,8 @@ GEM
       thor (~> 0.14)
     json (1.7.5)
     kgio (2.7.4)
+    launchy (2.3.0)
+      addressable (~> 2.3)
     libv8 (3.3.10.4)
     mail (2.4.4)
       i18n (>= 0.4.0)
@@ -86,6 +98,7 @@ GEM
       tzinfo (~> 0.3.22)
     moped (1.2.7)
     multi_json (1.3.6)
+    netrc (0.7.7)
     newrelic_rpm (3.5.0)
     oauth (0.4.7)
     omniauth (1.1.1)
@@ -130,6 +143,8 @@ GEM
     rdiscount (1.6.8)
     rdoc (3.12)
       json (~> 1.4)
+    rest-client (1.6.7)
+      mime-types (>= 1.16)
     rspec (2.11.0)
       rspec-core (~> 2.11.0)
       rspec-expectations (~> 2.11.0)
@@ -143,6 +158,7 @@ GEM
       activesupport (>= 3.0)
       railties (>= 3.0)
       rspec (~> 2.11.0)
+    rubyzip (0.9.9)
     sass (3.2.1)
     sass-rails (3.2.5)
       railties (~> 3.2.0)
@@ -178,6 +194,7 @@ DEPENDENCIES
   compass-rails (~> 1.0.3)
   factory_girl_rails
   haml-rails
+  heroku
   jbuilder
   jquery-rails
   mongoid (~> 3.0.0)

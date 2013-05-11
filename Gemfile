@@ -26,3 +26,4 @@ gem 'unicorn'
 gem 'pry'
 
 gem 'newrelic_rpm'
+gem 'heroku'
