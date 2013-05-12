@@ -14,6 +14,12 @@ class User
     logger.info auth.to_yaml
 
     create! do |user|
+      logger.info '---'
+      logger.info auth['provider']
+      logger.info auth['uid']
+      logger.info auth['info']['nickname']
+      logger.info '---'
+
       user.provider = auth['provider']
       user.uid = auth['uid']
       user.login = auth['info']['nickname']
