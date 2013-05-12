@@ -11,15 +11,8 @@ class User
   has_many :messages
 
   def self.create_with_omniauth(auth)
-    logger.info auth.to_yaml
-
+    create
     create! do |user|
-      logger.info '---'
-      logger.info auth['provider']
-      logger.info auth['uid']
-      logger.info auth['info']['nickname']
-      logger.info '---'
-
       user.provider = auth['provider']
       user.uid = auth['uid']
       user.login = auth['info']['nickname']
