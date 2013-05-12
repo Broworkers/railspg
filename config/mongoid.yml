@@ -82,9 +82,11 @@ test:
 test:
   sessions:
     default:
-      database: railspg_production
       hosts:
-        - localhost:27017
+        - alex.mongohq.com:10036
+      database: app15626949
+      username: railspg
+      password: railspg
       options:
         consistency: :strong
         # In the test environment we lower the retries and retry interval to
