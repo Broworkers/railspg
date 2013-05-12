@@ -5,8 +5,9 @@ end
 
 if Rails.env.production?
   OmniAuth.config.full_host = "http://railspg.com"
-  OmniAuth.config.full_host = "http://railspg-rpg.herokuapp.com"
+  -# OmniAuth.config.full_host = "http://railspg-rpg.herokuapp.com"
 else
   OmniAuth.config.full_host = "http://localhost:3000"
-  OmniAuth.config.full_host = "http://railspg.dev"
+  -# For Pow users
+  -# OmniAuth.config.full_host = "http://railspg.dev"
 end
