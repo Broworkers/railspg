@@ -25,5 +25,4 @@ gem 'factory_girl_rails'
 gem 'unicorn'
 gem 'pry'
 
-gem 'newrelic_rpm'
 gem 'heroku'
