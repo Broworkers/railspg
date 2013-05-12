@@ -11,7 +11,6 @@ class User
   has_many :messages
 
   def self.create_with_omniauth(auth)
-    create
     create! do |user|
       user.provider = auth['provider']
       user.uid = auth['uid']
