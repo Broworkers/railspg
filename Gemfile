@@ -8,13 +8,13 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'therubyracer', platforms: :ruby
   gem 'uglifier', '>= 1.0.3'
-  gem 'compass-rails', '~> 1.0.3'
 end
 
 gem 'jquery-rails'
 gem 'underscore-rails'
 gem 'haml-rails'
 gem 'rdiscount'
+gem 'compass-rails', '~> 1.0.3'
 
 gem 'omniauth'
 gem 'omniauth-twitter'
